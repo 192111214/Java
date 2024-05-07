@@ -1,0 +1,44 @@
+BankAccount class representing a generic bank account
+class BankAccount {
+    protected String accountNumber;
+    protected double balance;
+
+    public BankAccount(String accountNumber) {
+        this.accountNumber = accountNumber;
+        this.balance = 0.0;
+    }
+
+    public void deposit(double amount) {
+        balance += amount;
+        System.out.println("Deposit of $" + amount + " is successful.");
+    }
+
+    public void withdraw(double amount) {
+        if (balance >= amount) {
+            balance -= amount;
+            System.out.println("Withdrawal of $" + amount + " is successful.");
+        } else {
+            System.out.println("Insufficient funds.");
+        }
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+}
+
+// SavingsAccount class representing a savings account
+class SavingsAccount extends BankAccount {
+    private double interestRate;
+
+    public SavingsAccount(String accountNumber, double interestRate) {
+        super(accountNumber);
+        this.interestRate = interestRate;
+    }
+
+    public void addInterest() {
+        double interest = balance * interestRate / 100;
+        balance += interest;
+        System.out.println("Interest of $" + interest + " added to the account.");
+    }
+}
